@@ -1,4 +1,4 @@
-package com.thoughtworks.capability.gtb.restfulapidesign.repository;
+package com.thoughtworks.capability.gtb.restfulapidesign.service;
 
 import com.thoughtworks.capability.gtb.restfulapidesign.entity.Student;
 import com.thoughtworks.capability.gtb.restfulapidesign.entity.Team;
