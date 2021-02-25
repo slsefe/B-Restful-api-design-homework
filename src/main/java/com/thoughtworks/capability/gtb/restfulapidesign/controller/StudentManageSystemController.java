@@ -3,7 +3,6 @@ package com.thoughtworks.capability.gtb.restfulapidesign.controller;
 import com.thoughtworks.capability.gtb.restfulapidesign.entity.Student;
 import com.thoughtworks.capability.gtb.restfulapidesign.entity.Team;
 import com.thoughtworks.capability.gtb.restfulapidesign.service.IStudentManageSystem;
-import com.thoughtworks.capability.gtb.restfulapidesign.service.impl.StudentManageSystemService;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +15,11 @@ import java.util.List;
 @RestController
 @Validated
 public class StudentManageSystemController {
-    IStudentManageSystem sms = new StudentManageSystemService();
+    private final IStudentManageSystem sms;
+
+    public StudentManageSystemController(IStudentManageSystem sms) {
+        this.sms = sms;
+    }
 
     @GetMapping("/students")
     public List<Student> getAllStudents(@RequestParam(name = "gender", required = false) String gender) {
