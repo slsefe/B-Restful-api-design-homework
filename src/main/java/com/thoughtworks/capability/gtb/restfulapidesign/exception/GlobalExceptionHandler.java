@@ -1,7 +1,6 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.exception;
 
 import java.util.Objects;
-import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
@@ -14,8 +13,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(InvalidStudentException.class)
-    public ResponseEntity<ErrorResult> handle(InvalidStudentException ex) {
+    @ExceptionHandler({InvalidStudentException.class, InvalidTeamException.class})
+    public ResponseEntity<ErrorResult> handle(RuntimeException ex) {
         String message = ex.getMessage();
         ErrorResult errorResult = new ErrorResult(message);
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResult);
@@ -30,11 +29,9 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<ErrorResult> handle(ConstraintViolationException ex) {
-        Set<ConstraintViolation<?>> violations = ex.getConstraintViolations();
-
         String message = "";
         for (ConstraintViolation<?> constraint : ex.getConstraintViolations()) {
-            message = constraint.getMessage();
+            message += constraint.getMessage();
             break;
         }
         ErrorResult errorResult = new ErrorResult(message);

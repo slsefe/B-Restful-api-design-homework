@@ -22,7 +22,7 @@ public class StudentController {
 
     @GetMapping
     public List<Student> getAll(@RequestParam(required = false) String gender) {
-        return this.studentService.getAll(null, gender);
+        return studentService.getAll(gender);
     }
 
     @GetMapping("/{id}")
@@ -32,8 +32,8 @@ public class StudentController {
 
     @PostMapping
     public Student create(@RequestParam String name,
-                       @RequestParam String gender,
-                       @RequestParam(name = "note", required = false) String note) {
+                          @RequestParam String gender,
+                          @RequestParam(name = "note", required = false) String note) {
         return studentService.create(name, gender, note);
     }
 

@@ -28,3 +28,16 @@
 #### 注意事项
 1. 数据存储在内存中
 2. 提交前请使用curl或postman测试
+
+
+#### API设计
+
+1. 新增学生：post /students
+2. 删除学生：delete /students/{id}
+3. 查询学生列表：get /students
+4. 查询单个学生：get /students/{id}
+5. 更新学生信息：put /students/{id}
+6. 对学生进行分组：get /students/groups
+7. 更新组名：put /teams/{id}
+8. 查询分组列表：get /teams
+9. 查询单个分组：get /teams/{id}
